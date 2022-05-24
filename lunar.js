@@ -13,22 +13,23 @@ function rocket(x, y) {
     pop();
 }
 
-function ground() {
-    fill(255, 0, 0);
+function ground(y) {
+    fill(255, 255, 0);
     rect(0, y, width, height - y);
 }
 
+const groundLevel = 400
 let x = 100;
 let rocketY = 0;
 let speed = 0;
 const gravity = 0.15;
 
-
 // Rocket Animations
 function draw() {
-    background (255, 255, 255);
-    rocket(50, rocketY);
-
+    clear();
+    background (0, 0, 0);
+    ground(groundLevel)
+    rocket(150, rocketY);
 
     speed = speed + gravity;
     rocketY = rocketY + speed;
