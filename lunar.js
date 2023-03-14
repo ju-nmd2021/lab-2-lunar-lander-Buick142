@@ -18,24 +18,90 @@ function ground(y) {
     rect(0, y, width, height - y);
 }
 
-const groundLevel = 400
+function crashed() {
+    background(255, 255, 255);
+    fill(0, 0, 0);
+    textAlign(CENTER);
+    textSize(45);
+    text("You crashed :(", width/2, height/2);
+    textSize(22); 
+    text("Click to go to main meny", width/2, height/2 + 100);
+}
+
+function landed() { 
+    background(255, 255, 255);
+    fill(0, 0, 0);
+    textAlign(CENTER);
+    textSize(45);
+    text("You landed safely :D", width/2, height/2);
+    textSize(22);  
+    text("Click to go to main meny", width/2, height/2 + 100);
+}
+
+function start() { 
+    background(255, 255, 255);
+    fill(0, 0, 0);
+    textAlign(CENTER);
+    textSize(45);
+    text("LUNAR LANDER", width/2, height/2);
+    textSize(22);  
+    text("Click to start", width/2, height/2 + 100);
+}
+
+const groundLevel = 500;
 let x = 100;
 let rocketY = 0;
 let speed = 0;
 const gravity = 0.15;
+let state = "start";
 
-// Rocket Animations
-function draw() {
+function game() {
     clear();
     background (0, 0, 0);
-    ground(groundLevel)
+    ground(groundLevel);
     rocket(150, rocketY);
 
     speed = speed + gravity;
     rocketY = rocketY + speed;
+    const touchedGround = rocketY > (groundLevel - 286);
+    const isHoldingUp = keyIsDown(40);
+    const safeLanding = touchedGround && isHoldingUp;
 
-        
-    if (keyIsDown(40)) {
+    if (touchedGround == true) {
+        rocketY = 0;
+        speed = 0;
+
+        if (safeLanding == true) {
+            state = "landed";
+        } else if (safeLanding == false) {
+            state = "crashed";
+        }
+    } 
+    
+    if (isHoldingUp == true) {
         speed = speed - 0.3;
     } 
+}
+
+// Rocket Animations
+function draw() {
+    if (state == "start") {
+        start();
+    } else if (state == "game") {
+        game();
+    } else if (state == "crashed") {
+        crashed();
+    } else if (state == "landed") {
+        landed();
+    }
 } 
+
+function mouseClicked() {
+    if (state === "start") {
+        state = "game";
+    } else if (state === "crashed") {
+        state = "start";
+    } else if (state === "landed") {
+        state = "start";
+    }
+}
