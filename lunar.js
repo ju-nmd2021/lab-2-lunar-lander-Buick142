@@ -25,7 +25,7 @@ function crashed() {
     textSize(45);
     text("You crashed :(", width/2, height/2);
     textSize(22); 
-    text("Click to go to main meny", width/2, height/2 + 100);
+    text("Click to go to main menu", width/2, height/2 + 100);
 }
 
 function landed() { 
@@ -35,7 +35,7 @@ function landed() {
     textSize(45);
     text("You landed safely :D", width/2, height/2);
     textSize(22);  
-    text("Click to go to main meny", width/2, height/2 + 100);
+    text("Click to go to main menu", width/2, height/2 + 100);
 }
 
 function start() { 
@@ -44,8 +44,8 @@ function start() {
     textAlign(CENTER);
     textSize(45);
     text("LUNAR LANDER", width/2, height/2);
-    textSize(22);  
-    text("Click to start", width/2, height/2 + 100);
+    textSize(30);  
+    text("Click to start", width/2, height/2 + 50);
 }
 
 const groundLevel = 500;
@@ -58,6 +58,11 @@ let state = "start";
 function game() {
     clear();
     background (0, 0, 0);
+    push();
+    textAlign(CENTER);
+    textSize(18);
+    text("Press DOWN ARROW to slow your descent", width/2, height/2 - 150);
+    pop();
     ground(groundLevel);
     rocket(150, rocketY);
 
@@ -97,11 +102,11 @@ function draw() {
 } 
 
 function mouseClicked() {
-    if (state === "start") {
+    if (state == "start") {
         state = "game";
-    } else if (state === "crashed") {
+    } else if (state == "crashed") {
         state = "start";
-    } else if (state === "landed") {
+    } else if (state == "landed") {
         state = "start";
     }
 }
