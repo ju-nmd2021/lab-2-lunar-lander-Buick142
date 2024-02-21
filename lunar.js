@@ -51,6 +51,11 @@ function start() {
     text("LUNAR LANDER", width/2, height/2);
     textSize(30);  
     text("Click to start", width/2, height/2 + 50);
+    textSize(20);
+    text("RULES", width/2, height/2 + 120); 
+    textSize(16);  
+    text("Press DOWN ARROW to slow your descent.", width/2, height/2 + 140);
+    text("To successfully complete the mission, you must land with the thrusters on.", width/2, height/2 + 160);
 }
 
 const groundLevel = 500;
