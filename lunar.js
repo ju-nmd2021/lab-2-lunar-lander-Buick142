@@ -1,3 +1,8 @@
+// Setup
+function setup() {
+    createCanvas(800, 600);
+}
+
 // Rocket
 function rocket(x, y) {
     push();
